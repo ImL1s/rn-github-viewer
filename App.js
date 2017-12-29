@@ -9,6 +9,7 @@ import {
     Platform,
     StyleSheet,
     Text,
+    Image,
     View
 } from 'react-native';
 import TabNavigator from "react-native-tab-navigator";
@@ -21,12 +22,39 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedTab: 'home'
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <TabNavigator>
-                    <TabNavigator.Item>
-
+                    <TabNavigator.Item
+                        selected={this.state.selectedTab === 'home'}
+                        selectedTitleStyle={{color: 'red'}}
+                        renderIcon={() => <Image style={styles.image} source={require('./res/images/ic_polular.png')}/>}
+                        renderSelectedIcon={() => <Image style={[styles.image, {tintColor: 'red'}]}
+                                                         source={require('./res/images/ic_polular.png')}/>}
+                        bageText="1"
+                        title="Home"
+                        onPress={() => this.setState({selectedTab: 'home'})}>
+                        <View style={styles.page1}/>
+                    </TabNavigator.Item>
+                    <TabNavigator.Item
+                        selected={this.state.selectedTab === 'profile'}
+                        selectedTitleStyle={{color: 'yellow'}}
+                        renderIcon={() => <Image style={styles.image}
+                                                 source={require('./res/images/ic_contacts.png')}/>}
+                        renderSelectedIcon={() => <Image style={[styles.image, {tintColor: 'yellow'}]}
+                                                         source={require('./res/images/ic_contacts.png')}/>}
+                        bageText="2"
+                        title="contacts"
+                        onPress={() => this.setState({selectedTab: 'profile'})}>
+                        <View style={styles.page2}/>
                     </TabNavigator.Item>
                 </TabNavigator>
             </View>
@@ -38,7 +66,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     welcome: {
@@ -51,4 +78,17 @@ const styles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
     },
+    page1: {
+        flex: 1,
+        backgroundColor: 'red'
+    },
+    page2: {
+        flex: 1,
+        backgroundColor: 'yellow'
+    },
+    image: {
+        width: 22,
+        height: 22
+    }
 });
+// {/*selected={this.state.selectedTab === 'home'}*/}
