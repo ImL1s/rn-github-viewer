@@ -40,6 +40,7 @@ export default class FetchTest extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            // ify---为后缀，使……化, 使成
             body: JSON.stringify(data)
         })
             .then(response => response.json())
