@@ -1,4 +1,4 @@
-const listViewMockData = [
+export const listViewMockData = [
     {
         "email": "abc.gmail.com",
         "fullName": "SAM"
